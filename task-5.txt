@@ -1,4 +1,204 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:ümitcan çinar
+AD-SOYAD:250541009
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+4. proje: 👥 Arkadaş grubunda ortak karar verme sistemi:
+
+ümit: 👥 Arkadaş grubunda ortak karar verme sistemi konusuna sahip, koşullar (if-else) ve döngüler (loops) içeren detaylı bir algoritma yazacağım bana bir örnek sunar mısın?
+
+llm:🧠 BÖLÜM 1 — Detaylı (teknik / algoritmik anlatım)
+🎯 Amaç
+
+Bir arkadaş grubunun (örneğin 5 kişi) bir konuda ortak karar almasını sağlayan bir algoritma tasarlamak.
+Bu algoritma:
+
+Herkesin önerisini toplar,
+
+Oy verir,
+
+Çoğunluk kararını hesaplar,
+
+Eşitlik olursa ikinci tur veya uzlaşma sürecini başlatır.
+
+⚙️ 1. Tanımlar ve değişkenler
+grup_uyeleri       // [Ali, Ayşe, Mert, Elif, Can]
+öneri_listesi      // herkesin önerdiği seçenekler
+oy_sonuçları       // her üyenin seçtiği seçenek
+kazanan            // çoğunlukla seçilen öneri
+tur                // karar turu sayacı
+eşitlik_durumu     // True veya False
+
+🔁 2. Ana döngü: Karar verme süreci
+BAŞLA
+  tur ← 1
+  Yaz("Karar verme süreci başlıyor...")
+
+  HER üye İÇİN grup_uyeleri:
+      öneri ← AL(üye)
+      EKLE(öneri_listesi, öneri)
+  BİTİR_DÖNGÜ
+
+  WHILE karar_verilmedi:
+      Yaz("Tur", tur, "başladı!")
+      
+      HER üye İÇİN grup_uyeleri:
+          secim ← OY_VER(öneri_listesi)
+          EKLE(oy_sonuçları, secim)
+      BİTİR_DÖNGÜ
+      
+      kazanan ← EN_COK_OY_ALAN(oy_sonuçları)
+      eşitlik_durumu ← KONTROL_ET_EŞİTLİK(oy_sonuçları)
+
+      EĞER eşitlik_durumu = True:
+          Yaz("Eşitlik var! İkinci tur oylama başlatılıyor...")
+          öneri_listesi ← SADECE(kazananlar)
+          tur ← tur + 1
+      DEĞİLSE:
+          karar_verilmedi ← False
+          Yaz("Kazanan seçenek:", kazanan)
+      BİTİR_EĞER
+
+  BİTİR_WHILE
+  Yaz("Ortak karar başarıyla verildi! 🎉")
+
+BİTİR
+
+🧩 3. Karar tablosu (if-else mantığı)
+Durum	Karar
+Oylar eşit	İkinci tur yapılır
+Bir seçenek açık ara önde	Karar kabul edilir
+Bir üye oylamaya katılmadıysa	Eksik oy için uyarı ver
+Grup 3 tur sonunda hâlâ anlaşamadıysa	“Rastgele seçim” ya da “lider seçimi” yapılır
+Oyların farkı 1 ise	“Uzlaşma görüşmesi” başlatılır
+
+
+
+
+
+
+ÜMİT:günlük dilde yazılmış halde de sunar mısın?
+llm;☕️ BÖLÜM 2 — Günlük konuşma tarzında anlatım
+
+Şimdi düşün:
+Beş kişilik bir arkadaş grubusun.
+Cumartesi akşamı herkes WhatsApp’ta yazıyor:
+
+Ali: “Sinemaya gidelim!”
+Ayşe: “Ben sinema istemem, kafe olsun.”
+Mert: “Evde oturalım ya…”
+Elif: “Bowling?”
+Can: “Ne isterseniz…”
+
+Ve işte o meşhur cümle gelir:
+
+“Tamam da, ne yapıyoruz?” 😅
+
+💬 1. Önerileri topla
+
+Önce herkes fikrini söyler.
+Bu bizim veri toplama adımı.
+
+if kişi_fikri_varsa → listeye ekle
+else → “Hadi sen de bir fikir at ortaya!”
+
+Sonra ortaya kocaman bir “ne yapalım?” listesi çıkar:
+🎬 Sinema
+☕ Kafe
+🎳 Bowling
+🏠 Evde takılmak
+
+🗳️ 2. Oylama zamanı
+
+Diyorsun ki:
+
+“Tamam, herkes 1 oy hakkını kullansın.”
+
+Herkes el kaldırıyor ya da emoji atıyor.
+Bir bakıyorsun:
+
+2 kişi sinema,
+
+2 kişi kafe,
+
+1 kişi evde oturmak.
+
+Yani eşitlik!
+
+if oylar eşitse → “İkinci tur başlasın!” 😄
+
+🔁 3. İkinci tur döngüsü
+
+İkinci turda sadece önde giden iki seçenek kalır.
+Bu sefer herkes kararlı:
+
+“Tamam ya, kafe olsun.”
+Karar çıktı. 🎉
+
+while karar_verilmedi → oylama_turu_tekrar()
+
+Yani aynı döngü dönüyor, ta ki ortak karar alınana kadar.
+
+🤝 4. Uzlaşma modu
+
+Bazen oylama yetmez.
+Ali hâlâ “sinema!” diye diretir.
+O zaman “müzakere” devreye girer:
+
+“Tamam, bu hafta kafe, haftaya sinema.”
+
+Bu da aslında bir “if else” + “plan erteleme” mekanizmasıdır 😄
+
+🧩 5. Karar sonrası kontrol
+
+Karar verildi mi?
+
+Evet → grup onay mesajı atar: “Tamam, 19:00’da kafede!”
+Hayır → tekrar tartışma başlar 😅
+
+Yani:
+
+if herkes_onayladı → karar tamam
+else → döngü başa döner
+
+😂 6. Bonus fikirler
+
+Grup karar botu kur: herkesin oyunu sayıp sonucu duyuran mini yazılım 🤖
+
+Her hafta sırayla “karar kaptanı” seç (oylar eşitse onun dediği olur).
+
+Oy sayımı bitince “kazanan seçeneğe özel müzik” çalsın 🎵
+
+En çok oyu alan kişi için “Karar Kralı 👑” etiketi oluştur.
+
+🧠 Kısa özet
+
+Arkadaş grubunda karar vermek aslında mini bir demokrasi algoritması:
+
+Herkes veri (öneri) gönderir,
+
+Sistem döngüyle oy toplar,
+
+If-else ile sonucu analiz eder,
+
+Eşitlik varsa tekrar döner.
+
+Sonunda çıkan şey sadece bir plan değildir — bir uzlaşma sanatıdır. 💬🤝
+
+
+
+
+
+
+ümit: çalışan kod versiyonu (python)'da üretir misin?
+proje adı:arkadaşlıkgüzeldirbrox5  
+oylar = {"sinema": 2, "kafe": 2, "evde oturmak": 1}
+
+max_oy = max(oylar.values())
+kazananlar = [k for k, v in oylar.items() if v == max_oy]
+
+if len(kazananlar) > 1:
+    print("Eşitlik var, ikinci tur başlatılıyor...")
+else:
+    print(f"Kazanan karar: {kazananlar[0]} 🎉")
+
+kaynak: llm(ChatGPT)
