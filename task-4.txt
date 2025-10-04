@@ -1,4 +1,204 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:2250541009
+AD-SOYAD:ümitcan çinar
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+4. proje: Lego ile belirli şekil yapma:
+
+ümit: Lego ile belirli şekil yapma konusuna sahip, koşullar (if-else) ve döngüler (loops) içeren detaylı bir algoritma yazacağım bana bir örnek sunar mısın?
+
+llm:🧩 BÖLÜM 1 — Detaylı (teknik / algoritmik) anlatım
+🎯 Amaç
+
+Belirli bir şekli (örneğin bir ev, araba, kule veya robot) Lego parçalarıyla oluşturmak için sistematik bir algoritma geliştirmek.
+Hedef: planlı şekilde inşa etmek, eksik parçaları tespit etmek ve gerektiğinde strateji değiştirmek.
+
+⚙️ 1. Temel değişkenler
+hedef_sekil         // Yapılmak istenen şekil (ör: “ev”)
+parca_listesi       // Mevcut tüm Lego parçaları (renk, boyut, tip)
+gerekli_parcalar    // Şekli tamamlamak için gereken parça listesi
+katman_sayisi       // Şeklin kaç katmandan oluştuğu
+inşa_durumu         // Tamamlanma oranı (0–100%)
+eksik_parcalar      // Eksik veya uyumsuz parçalar listesi
+
+🔁 2. Ana döngü — İnşa süreci
+BAŞLA
+  YÜKLE(hedef_sekil_planı)
+  KARŞILAŞTIR(parca_listesi, gerekli_parcalar)
+
+  EĞER eksik_parcalar VARSA:
+      YAZ("Eksik parçalar bulundu, inşa ertelendi.")
+      PARCA_TEMİN_ET(eksik_parcalar)
+  DEĞİLSE:
+      YAZ("Tüm parçalar hazır, inşa başlıyor!")
+  BİTİR_EĞER
+
+  katman ← 1
+  WHILE katman <= katman_sayisi:
+      YAZ("Katman", katman, "inşa ediliyor...")
+      HER parça İÇİN (katman_planında):
+          EĞER parça UYUMLU_MU(parca_listesi):
+              YERLEŞTİR(parça)
+          DEĞİLSE:
+              YAZ("Uygun parça bulunamadı, alternatif aranıyor...")
+              ALTERNATİF_PARÇA_BUL()
+          BİTİR_EĞER
+      SONRAKİ_PARÇA
+      katman ← katman + 1
+  BİTİR_WHILE
+
+  EĞER TÜM_KATLAR_TAMAM():
+      inşa_durumu ← 100%
+      YAZ("Şekil başarıyla tamamlandı! 🎉")
+  DEĞİLSE:
+      YAZ("Bazı bölümler eksik, kontrol et.")
+  BİTİR_EĞER
+
+BİTİR
+
+🧱 3. Karar tablosu (if-else mantığı)
+Durum	Karar
+Eksik parça varsa	İnşa durdur, parça temin et
+Parça yanlış boyuttaysa	Alternatif parça bul
+Parça doğruysa	Yerine yerleştir
+Katman tamamlandıysa	Bir üst katmana geç
+Tüm katlar tamamlandıysa	Şekli bitir
+Hatalı bağlantı varsa	Geri al, yeniden yerleştir
+
+
+
+
+
+
+ÜMİT:günlük dilde yazılmış halde de sunar mısın?
+llm;☕️ BÖLÜM 2 — Günlük konuşma tarzında anlatım
+
+Haydi sahneye çıkalım.
+Bir Pazar sabahı… kahveni aldın ☕, kutuyu açtın…
+Karşında 1000 parçalık bir Lego seti.
+Kutuda diyor ki:
+
+“Yapılacak model: Uzay Üssü 🚀”
+
+Ve sen diyorsun:
+
+“Tamam, ben bu işi sistemli yapacağım. Karışıklık yok!”
+
+🧩 1. Önce envanter kontrolü
+
+Başlıyorsun:
+
+“Bu gri parça nerede?”
+
+“Aaa iki tane pencere az çıkmış!”
+
+“Şu sarı şey çatı mıydı, duvar mıydı?”
+
+Yani ilk adım: Eksik var mı, yok mu kontrol et.
+
+“Eğer eksik parça varsa → inşa durur,
+değilse → devam!”
+
+Tıpkı yemeğe başlamadan “soğan var mı?” diye bakmak gibi 😄
+
+🔧 2. Plan yap
+
+El kitabına bakıyorsun.
+Sayfa 1: Temel taban yapılacak.
+Sayfa 2: Duvarlar.
+Sayfa 3: Çatı.
+
+Diyorsun ki:
+
+“Tamam, katman katman gidelim.”
+
+Her sayfa bir döngü turu aslında.
+“Katman tamamlandı mı? → Evetse sonraki sayfa.”
+
+🧱 3. Parçaları yerleştir
+
+Bir parçayı alıp takarken bazen denk gelmiyor.
+İşte orada beyin devreye giriyor:
+
+“Bu oturmadıysa → başka bir parça dene.”
+
+“Rengi yanlışsa → daha uygun birini bul.”
+
+Yani bir nevi:
+
+“if yanlış_parça: alternatif dene
+else: tak ve devam et”
+
+Bu, Lego’nun gizli kodudur aslında 😄
+
+🔁 4. Katman döngüsü
+
+Her kat bir tur.
+Her turda küçük ama somut bir ilerleme.
+Her kat bitince şöyle diyorsun:
+
+“Evet, biraz şekil almaya başladı!”
+
+Ama dikkat:
+Bir parça yanlış takılırsa, üst katlar çökebilir.
+O yüzden arada kontrol yapmak şart:
+
+“Her 3 katmanda bir: sağlam mı, yamuk mu?”
+
+🚀 5. Bitirme aşaması
+
+Son parça elinde…
+O an var ya, puzzle’ın son parçasını koymak gibi:
+
+“Klik!”
+ve diyorsun:
+“Tamamdır, bitti bu iş!” 🎉
+
+İşte algoritmanın son satırı:
+“Şekil tamamlandı → kutla ve fotoğraf çek 📸”
+
+🎨 6. Yaratıcılık fikirleri
+
+Klasik şekli yaptıktan sonra, algoritmayı boz: “Aynı parçalarla yeni bir şey yap!”
+
+Renkleri rastgele karıştırıp “alternatif evren modeli” oluştur.
+
+Eksik parçayı başka bir objeyle telafi et (ör. mavi yerine gri tuğla).
+
+Her kat bittiğinde fotoğraf çek → “timelapse” Lego filmi çıkar 🎬
+
+Ekstra parçalardan mini bir bahçe, araba veya köpek yap! 🐶
+
+🧠 Kısa özet
+
+Lego aslında kod yazmak gibidir.
+Her parça bir “komut”,
+her katman bir “döngü”,
+her hata bir “if kontrolü”.
+
+Ama sonunda çıkan şey soyut kod değil, somut bir eser.
+Ve algoritmanın en güzel kısmı:
+
+“Her şey planla başlar, sabırla tamamlanır.” 🧱✨
+
+
+
+
+
+
+ümit: çalışan kod versiyonu (python)'da üretir misin?
+proje adı:legocuuux4  
+for katman in range(1, toplam_katman + 1):
+    print(f"{katman}. katman başlıyor...")
+    for parca in katman_plan[katman]:
+        if parca in parca_listesi:
+            yerles(parca)
+        else:
+            print(f"{parca} bulunamadı, alternatif aranıyor...")
+            alternatif = bul_alternatif(parca)
+            if alternatif:
+                yerles(alternatif)
+            else:
+                print("Bu bölüm eksik kalacak.")
+    print(f"{katman}. katman tamamlandı!")
+print("Yapı tamamlandı! 🎉")
+kaynak: llm(ChatGPT)
