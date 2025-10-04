@@ -1,0 +1,258 @@
+Öğrenci No:250541009
+AD-SOYAD:ümitcan çinar
+
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+1. proje:🏠 Monopoly’de en iyi hamle seçimi:
+
+ümit:🏠 Monopoly’de en iyi hamle seçimi konusuna sahip, koşullar (if-else) ve döngüler (loops) içeren detaylı bir algoritma yazacağım bana bir örnek sunar mısın?
+
+llm:🧩 BÖLÜM 1: Detaylı (teknik/akademik tarzda) anlatım
+🎯 Amaç:
+
+Monopoly oyununda oyuncunun her turda “en iyi hamleyi” seçmesini sağlayan bir algoritma kurmak.
+Bu algoritma koşullar (if-else) ve döngüler (loops) kullanarak:
+
+Ne zaman satın alınır,
+
+Ne zaman bina yapılır,
+
+Ne zaman pazarlık yapılır,
+
+Ne zaman nakit korunur
+gibi kararları verir.
+
+⚙️ 1. Temel değişkenler:
+para_miktari          // eldeki toplam para
+mülk_listesi          // oyuncunun sahip olduğu arsalar
+rakip_mülkleri        // diğer oyuncuların sahip oldukları arsalar
+bina_maliyeti         // bina (ev/otel) inşa etme maliyeti
+kira_geliri           // mevcut gelir potansiyeli
+risk_durumu           // iflas tehlikesi (0 = güvenli, 1 = riskli)
+zar_sonucu            // oyuncunun mevcut konumu belirler
+hedef_para            // “güvenli” sayılacak minimum nakit (ör. 500)
+
+🔁 2. Döngü: Her tur bir karar döngüsüdür
+BAŞLA
+  OYUN_BITENE_KADAR TEKRARLA:
+      zar_sonucu ← ZAR_AT()
+      konum ← GÜNCEL_KONUM(zar_sonucu)
+      
+      // 1️⃣ Eğer boş mülke gelindiyse:
+      EĞER konum bir mülkse VE mülk sahibi yoksa:
+          EĞER para_miktari > mülk.fiyat + 200:
+              SATIN_AL(mülk)
+              Yaz("Yeni mülk satın alındı:", mülk.isim)
+          DEĞİLSE:
+              Yaz("Yeterli paran yok, geç.")
+          BİTİR_EĞER
+          
+      // 2️⃣ Eğer başka birinin mülküne gelindiyse:
+      EĞER konum bir rakip_mülkü ise:
+          kira ← HESAPLA_KİRA(konum)
+          para_miktari ← para_miktari - kira
+          Yaz("Rakibe kira ödendi:", kira)
+          EĞER para_miktari < 0:
+              İFLAS_PROSEDÜRÜ()
+          BİTİR_EĞER
+      BİTİR_EĞER
+      
+      // 3️⃣ Eğer kendi mülklerinden biri tam set oluşturduysa:
+      EĞER TAM_SET_VAR_MI(mülk_listesi) VE para_miktari > bina_maliyeti * 2:
+          İNŞA_ET_EV_VEYA_OTEL()
+          Yaz("Yeni bina inşa edildi.")
+      DEĞİLSE:
+          Yaz("Şimdilik bina yapılmadı.")
+      BİTİR_EĞER
+
+      // 4️⃣ Nakit durumu analizi:
+      EĞER para_miktari < hedef_para:
+          risk_durumu ← 1
+          Yaz("Uyarı: Nakit az, agresif oynamayı bırak!")
+      DEĞİLSE:
+          risk_durumu ← 0
+      BİTİR_EĞER
+      
+      // 5️⃣ Fırsat kartları (şans / kamu fonu):
+      EĞER KART_ÇEKİLDİ():
+          kart ← RASTGELE_KART()
+          KART_ETKİSİ_UYGULA(kart)
+      BİTİR_EĞER
+
+      // 6️⃣ Rakiplerin durumuna göre strateji ayarı:
+      rakip_analizi ← ORTALAMA_RAKİP_NAKİT()
+      EĞER rakip_analizi > para_miktari:
+          STRATEJI ← “koruma”
+      DEĞİLSE:
+          STRATEJI ← “yatırım”
+      BİTİR_EĞER
+      
+  SONRAKİ_TURA_GEÇ
+BİTİR_DÖNGÜ
+BİTİR
+
+🧠 3. Strateji mantığı:
+Durum	Karar
+Nakit > 1000 ve boş mülk varsa	Satın al
+Nakit < 400 ve risk durumu 1	Hiçbir şey satın alma
+3 aynı renkten set varsa	Ev/otel inşa et
+Rakip iflas sınırında	Mülk takası teklif et
+2 oturum üst üste kira ödemişsen	Savunmaya geç (para biriktir)
+💰 4. Mini Python benzeri örnek:
+if para_miktari > 1000 and bos_mulk_var:
+    satin_al(mulk)
+elif para_miktari < 400:
+    print("Para az, temkinli oyna!")
+else:
+    print("Duruma göre bekle ve gözlemle.")
+
+for tur in range(1, 20):
+    print(f"{tur}. tur başladı.")
+    zar = random.randint(1, 12)
+    konum = ilerle(zar)
+    karar_ver(konum, para_miktari)
+
+🧩 5. Geliştirme fikirleri:
+
+Risk puanı hesaplama: her hamlede potansiyel iflas riski = borç / gelir oranı.
+
+Veri analizi: her oyuncunun davranışını analiz edip “en çok kazandıran strateji”yi bul.
+
+Yapay zeka eklentisi: hamleleri geçmiş sonuçlara göre optimize eden bir model (ör. “Monte Carlo” simülasyonu).
+
+Görselleştirme: her turda nakit değişimi ve mülk büyüklüğü grafiği.
+
+
+
+
+
+
+
+
+ümit:günlük dilde yazılmış halde de sunar mısın?
+llm;☕ BÖLÜM 2: GÜNLÜK KONUŞMA TARZINDA ANLATIM
+
+Diyelim ki akşam arkadaşlarla Monopoly açtınız.
+Herkes cipsini almış, kahve hazır, zarlar masada.
+Sen diyorsun ki:
+
+“Bu sefer sadece şansa bırakmayacağım. Akıllı oynayacağım!”
+
+🎲 1. İlk kural: “Her yere atlamayacaksın”
+
+Her tur zar atıyorsun, bir yere geliyorsun.
+Burası boş mu? Hemen düşün:
+
+Paran çoksa: “Al gitsin! Yatırım zamanı.”
+
+Paran azsa: “Dur bakalım… Şimdi alırsam sonraki turda kira ödeyemem.”
+
+Yani tıpkı markette alışveriş yaparken düşünmek gibi:
+
+“Bu indirimi kaçırsam da olur, ama faturayı ödeyemezsem sıkıntı.” 😅
+
+🏠 2. Renk seti tamamlandı mı? Hemen ev dik!
+
+Üç tane aynı renkten arsa toplayabildiysen:
+
+“Tamamdır! Artık bina zamanı.”
+
+Ama her zaman değil tabii…
+
+Eğer paran yeterliyse: “Bir-iki ev dik, kira artsın.”
+
+Eğer cebin zayıfsa: “Dur biraz, yoksa iflas tabelası gelir.”
+
+Bu da tıpkı çayı demlemek gibi:
+Az dem = hafif oyun,
+Çok dem = riskli ama getirisi yüksek oyun.
+
+💸 3. Rakip mülklerine bastığında
+
+“Of ya, tam o köşeyi geçecektim, Park Caddesi çıktı!”
+Kira ödemek zorundasın.
+Burada karar noktası geliyor:
+
+Eğer hâlâ paran varsa: “Sıkıntı yok, devam et.”
+
+Ama eğer birkaç turdur hep kira ödüyorsan:
+
+“Bir dakika, bu oyun bana pahalıya patlıyor. Savunmaya geçiyorum!”
+
+Yani, iki tur üst üste kira ödemek demek =
+“Artık yatırım yapmayı bırak, birikim moduna geç.” 💰
+
+🔁 4. Her tur bir denge arayışı
+
+Oyun boyunca aslında hep şu döngü dönüyor:
+
+“Param var → satın al → bina yap → kira topla → tekrar yatırım yap.”
+
+Ama bazen:
+
+“Param yok → bekle → bir şey alma → toparlan.”
+
+Bu, Monopoly’nin if-else döngüsüdür aslında.
+Her tur bir karar, her karar bir sonuç.
+
+⚖️ 5. Zorluk ayarı = Rakip analizi
+
+Bak etrafına:
+
+Rakiplerin çoğunun parası senden fazla mı?
+“O zaman sakın agresif oynamayasın.”
+
+Yok herkes zorda, senin kasan doluysa?
+“İşte o zaman alım zamanı! Hemen birkaç arsa daha kap!”
+
+Tıpkı masada çay yetmeyince son bardağı senin alman gibi. 😄
+
+🏁 6. Sonuç: “Akıllı oyna, ama keyiften ödün verme”
+
+Monopoly’de en iyi hamle aslında şudur:
+
+“Kendini korurken fırsatı kaçırma.”
+
+Yani ne tamamen cimri ol, ne de hepsini tek tura yatır.
+Bazen beklemek, bazen almak, bazen de pazarlık yapmak…
+Hepsi oyunun bir parçası.
+
+🎨 Bonus: Küçük yaratıcılık fikirleri
+
+Her hamleye bir karakter ver (ör. “Tüccar Tuba”, “Riskli Rıdvan”).
+
+Oyuncuların parasını renkli barlarla göster.
+
+Kira ödeyince “banka sesi” efekti koy: “Ding! 200$ eksildi!”
+
+Her bina diktiğinde küçük animasyon veya ses çıkar: “Tık tık! Yeni ev kuruldu.”
+
+☕ Özetle:
+
+Bu algoritma, Monopoly’nin gizli kuralını öğretir:
+
+“Her hamle şans değil, bir strateji sınavıdır.”
+
+Zar rastgele düşer ama senin kararın hesaplı olursa,
+oyunun sonunda şans değil strateji kazanır. 🎯
+
+
+
+
+
+
+ümit: çalışan kod versiyonu (python)'da üretir misin?
+proje adı:monopoly canavarıx2   
+if para_miktari > 1000 and bos_mulk_var:
+    satin_al(mulk)
+elif para_miktari < 400:
+    print("Para az, temkinli oyna!")
+else:
+    print("Duruma göre bekle ve gözlemle.")
+
+for tur in range(1, 20):
+    print(f"{tur}. tur başladı.")
+    zar = random.randint(1, 12)
+    konum = ilerle(zar)
+    karar_ver(konum, para_miktari)
+
+kaynaklar:llm(ChatGPT)
