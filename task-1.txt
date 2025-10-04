@@ -1,4 +1,299 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541009
+AD-SOYAD:ümitcan çinar
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+1. proje:🎮 Favori oyunda yüksek skor alma:
+
+ümit:Favori oyunda yüksek skor alma konusuna sahip, koşullar (if-else) ve döngüler (loops) içeren detaylı bir algoritma yazacağım bana bir örnek sunar mısın?
+
+llm:BAŞLA
+  // --- 1. Başlangıç değişkenleri ---
+  hedef_skor ← kullanıcının ulaşmak istediği skor (ör. 1500)
+  en_iyi_skor ← 0
+  oturum ← 0
+  max_oturum ← 30
+  zorluk ← 1
+  ardışık_gelişme ← 0
+
+  // --- 2. Oyun döngüsü ---
+  WHILE (oturum < max_oturum VE en_iyi_skor < hedef_skor) YAP
+    oturum ← oturum + 1
+    en_iyi_oturum_skor ← 0
+    deneme ← 0
+    max_deneme ← 5
+
+    // --- 3. Her oturumda birkaç deneme yapılır ---
+    WHILE (deneme < max_deneme) YAP
+      deneme ← deneme + 1
+      skor ← OYUN_SIMULASYONU(zorluk)   // Oyuncunun performansına göre skor üretilir
+
+      // --- 4. Skor analizi ve strateji seçimi ---
+      EĞER skor < (zorluk * 50) İSE
+        // Çok düşük skor → riskli oynamamak gerek
+        UYGULA_BASIT_STRATEJI()
+        Yaz "Savunmada kal, hata yapma"
+      DEĞİLSE EĞER skor < (zorluk * 100) İSE
+        // Orta düzey skor → dengeli oyna
+        UYGULA_STANDART_STRATEJI()
+        Yaz "Dengeli oyun: riskleri azalt"
+      DEĞİLSE
+        // Yüksek skor → risk al, çünkü gelişme var
+        UYGULA_RISKLI_STRATEJI()
+        Yaz "Riskli kombinasyonlar dene!"
+      BİTİR_EĞER
+
+      // En iyi oturum skorunu güncelle
+      EĞER skor > en_iyi_oturum_skor İSE
+        en_iyi_oturum_skor ← skor
+      BİTİR_EĞER
+    BİTİR_WHILE
+
+    // --- 5. Oturum sonunda değerlendirme ---
+    EĞER en_iyi_oturum_skor > en_iyi_skor İSE
+      en_iyi_skor ← en_iyi_oturum_skor
+      ardışık_gelişme ← ardışık_gelişme + 1
+      Yaz "Gelişme var! Yeni en iyi skor:", en_iyi_skor
+    DEĞİLSE
+      ardışık_gelişme ← 0
+      Yaz "Bu oturumda gelişme olmadı."
+    BİTİR_EĞER
+
+    // --- 6. Zorluk seviyesini adapte et ---
+    EĞER ardışık_gelişme ≥ 3 İSE
+      zorluk ← zorluk + 1
+      Yaz "Zorluk arttı:", zorluk
+    DEĞİLSE EĞER ardışık_gelişme = 0 İSE
+      zorluk ← MAKS(1, zorluk - 1)
+      Yaz "Zorluk düşürüldü:", zorluk
+    BİTİR_EĞER
+
+    // --- 7. Kayıt tut ---
+    KAYDET(oturum, en_iyi_oturum_skor, zorluk)
+  BİTİR_WHILE
+
+  // --- 8. Sonuç ---
+  EĞER en_iyi_skor ≥ hedef_skor İSE
+    Yaz "Tebrikler! Hedefe ulaştın:", en_iyi_skor
+  DEĞİLSE
+    Yaz "Hedefe ulaşılamadı. En iyi skor:", en_iyi_skor
+  BİTİR_EĞER
+BİTİR
+
+ümit:günlük dilde yazılmış halde de sunar mısın?
+llm;🎯 Yüksek Skor Alma Algoritması (Günlük Konuşma Versiyonu)
+
+Diyelim ki bir oyun var, mesela senin favori oyunun —
+her seferinde oynamaya başlıyorsun, “bu sefer kesin rekoru kıracağım!” diyorsun.
+Ama tabii iş o kadar kolay değil.
+O yüzden bir plan yapıyoruz, hani reçel sürmeden önce bıçağı kontrol eder gibi.
+
+🧩 1. Başlangıç (Yani oyuna girmek)
+
+Önce hedef belirliyoruz:
+
+“Bugün 1500 puanı geçeceğim!”
+
+Sonra kendimize birkaç kural koyuyoruz:
+
+En fazla 30 oturum oynayacağım (kendimi harap etmeyeyim).
+
+Her oturumda 5 deneme hakkım var.
+
+Zorluk seviyem 1’den başlasın, sonra bakarız.
+
+En iyi skorum sıfır, çünkü daha oynamadım.
+
+Kısaca:
+“Başlıyoruz. Elimde çayım, önümde bilgisayar, kafamda hedef: 1500 puan.”
+
+🔁 2. Döngü Başlıyor (Yani oyunu oyna – dene – tekrar dene)
+
+Oturum 1:
+“Tamam, ısındım, birkaç deneme yapayım.”
+
+Her oturumda 5 defa oynuyorsun.
+Her oynayışta oyunun sonucu değişiyor.
+Bazen mükemmel gidiyor, bazen berbat.
+
+Her denemede kendine bakıyorsun ve diyorsun ki:
+
+Eğer skor çok düşükse (mesela 50’nin altındaysa):
+“Hmm, fena oynadım. Bir sakin olayım, basit stratejiye dönüyorum.”
+(Yani abartmadan, güvenli oynuyorsun — tıpkı reçeli taşırmadan sürmek gibi.)
+
+Eğer skor ortalama civardaysa:
+“Tamam, fena değil. Aynı tempoda devam, ama dikkatli ol.”
+(Yani o kıvamlı çay ayarında kalıyorsun.)
+
+Eğer skor yüksekse:
+“Ooo bu iyi gidiyor, biraz risk alayım!”
+(Yani o an cesaretlenip kahveni şekersiz içmeye karar veriyorsun, o modda.)
+
+Sonra denemelerin bitince diyorsun ki:
+“Bu oturumun en iyi skoru şu kadar oldu.”
+
+Ve hemen bir iç ses devreye giriyor:
+
+Eğer bu skor önceki oturumdakinden yüksekse →
+“Süper! Gelişme var!”
+Hemen moral geliyor, özgüven tavan.
+
+Yok aynı ya da düşükse →
+“Hmm… olmadı. Bir şeyleri değiştirmem lazım.”
+(Belki parmak pozisyonunu değiştiriyorsun, belki oyunun müziğini kapatıyorsun.)
+
+⚙️ 3. Zorluk Ayarı (Yani oyunu zorlaştırıyorsun)
+
+Kendine bir sistem koyuyorsun:
+
+Eğer 3 oturum üst üste gelişme gösterirsen, diyorsun ki:
+“Artık bu seviyede kolay geliyor, biraz zorluk arttırayım.”
+(Tıpkı çayı biraz daha demli yapmaya karar vermek gibi.)
+
+Ama eğer hiç gelişme yoksa,
+“Dur ya, belki fazla zorladım. Biraz kolaylaştırayım.”
+(Çay çok acı olduysa su eklemek gibi.)
+
+Yani oyun sana uyum sağlıyor, sen de oyuna.
+Böyle böyle dengeyi buluyorsun.
+
+📒 4. Her Oturumdan Sonra (Yani not tutmak)
+
+Her seansın sonunda bir küçük not:
+
+“Oturum 5: En iyi skor 940, zorluk 2.”
+
+Bu sayede ne zaman geliştiğini, ne zaman geri gittiğini görüyorsun.
+Kendini değerlendiriyorsun:
+“Hmm, zorluk 3’e geçince biraz düşmüşüm, belki o seviyeye erken çıktım.”
+
+🏁 5. Bitiş (Yani oyunu kapatma anı)
+
+30 oturum bittiğinde (ya da hedefe ulaşınca) kendine soruyorsun:
+
+“Hedefe ulaştım mı?”
+
+Evet, geçtiysem:
+“Harika! Yeni kişisel rekorum bu!” 🎉
+
+Hayır, yetişemediysem:
+“Olsun, en iyi skorum şu kadar oldu. Bir dahaki sefer o 1500’ü geçeceğim.” 💪
+
+🧠 Mantık Olarak Ne Oldu?
+
+Döngü = “Her oturumda tekrar tekrar denemek.”
+
+If-Else = “Duruma göre strateji değiştirmek.”
+
+Değişkenler = “Skor, oturum sayısı, zorluk seviyesi.”
+
+Kayıt = “Her aşamada ne yaptığını unutmamak.”
+
+Adaptasyon = “Gelişiyorsan zorlaştır, geriliyorsan kolaylaştır.”
+
+☕ Sonuç:
+
+Bu algoritma tıpkı şöyle:
+
+“Bir fincan çay demliyorsun.
+İlkinde su az geliyor, ikincisinde çok koyuyorsun, üçüncüde tam tutturuyorsun.
+Sonra diyorsun ki, ‘Heh işte bu!’.
+O zamana kadar hep aynı şeyi yapıyorsun ama biraz farklı, biraz daha bilinçli.”
+
+Yani oyun oynamak da böyle.
+Deniyorsun, ölçüyorsun, geliştiriyorsun, ayarlıyorsun.
+Ve sonunda o yüksek skoru “hak ederek” alıyorsun. 🏆
+
+
+
+
+
+
+ümit: çalışan kod versiyonu (python)'da üretir misin?
+proje adı:SkorMakinesi 3000
+llm: import random
+
+# --- Strateji fonksiyonları ---
+def uygula_basit_strateji():
+    print("→ Basit strateji: savunmaya çekil, hataları azalt.")
+
+def uygula_standart_strateji():
+    print("→ Standart strateji: dengeli oyna, riskleri yönet.")
+
+def uygula_riskli_strateji():
+    print("→ Riskli strateji: yüksek puan kombinasyonları dene!")
+
+# --- Oyun simülasyonu ---
+def oyun_simulasyonu(zorluk):
+    """
+    Oyuncunun o anki performansına göre skor üretir.
+    Zorluk arttıkça potansiyel kazanç da artar ama hata riski büyür.
+    """
+    beceri = random.uniform(0.5, 1.0)         # oyuncunun o anki performansı
+    rastgelelik = random.gauss(0, 20*zorluk)  # varyans
+    skor = int(beceri * 100 * zorluk + rastgelelik)
+    return max(skor, 0)  # skor negatif olamaz
+
+# --- Kayıt tutma ---
+def kaydet(oturum, skor, zorluk):
+    print(f"[Oturum {oturum}] Skor: {skor} | Zorluk: {zorluk}")
+
+# --- Ana döngü ---
+def yuksek_skor_egitimi(hedef_skor=1500, max_oturum=30):
+    en_iyi_skor = 0
+    ard_gelis = 0
+    zorluk = 1
+    oturum = 0
+
+    while oturum < max_oturum and en_iyi_skor < hedef_skor:
+        oturum += 1
+        print("\n===============================")
+        print(f"🎮 OTURUM {oturum} BAŞLADI (Zorluk: {zorluk})")
+        en_iyi_oturum = 0
+
+        for deneme in range(1, 6):  # her oturumda 5 deneme
+            skor = oyun_simulasyonu(zorluk)
+            print(f"  Deneme {deneme}: Skor = {skor}")
+
+            # --- Strateji seçimi ---
+            if skor < zorluk * 70:
+                uygula_basit_strateji()
+            elif skor < zorluk * 110:
+                uygula_standart_strateji()
+            else:
+                uygula_riskli_strateji()
+
+            if skor > en_iyi_oturum:
+                en_iyi_oturum = skor
+
+        # --- Oturum sonu değerlendirme ---
+        if en_iyi_oturum > en_iyi_skor:
+            print(f"✅ Yeni rekor! Önceki: {en_iyi_skor} → Yeni: {en_iyi_oturum}")
+            en_iyi_skor = en_iyi_oturum
+            ard_gelis += 1
+        else:
+            print("❌ Gelişme yok.")
+            ard_gelis = 0
+
+        # --- Zorluk ayarı ---
+        if ard_gelis >= 3:
+            zorluk += 1
+            print("⬆️ Zorluk seviyesi artırıldı!")
+        elif ard_gelis == 0:
+            zorluk = max(1, zorluk - 1)
+            print("⬇️ Zorluk seviyesi düşürüldü!")
+
+        kaydet(oturum, en_iyi_oturum, zorluk)
+
+    print("\n===============================")
+    if en_iyi_skor >= hedef_skor:
+        print(f"🏆 Tebrikler! Hedef skor ({hedef_skor}) aşıldı: {en_iyi_skor}")
+    else:
+        print(f"🎯 Hedefe ulaşılamadı. En iyi skor: {en_iyi_skor}")
+
+# --- Çalıştır ---
+if __name__ == "__main__":
+    yuksek_skor_egitimi()
+
+
+kaynak: llm(chatGPT)
