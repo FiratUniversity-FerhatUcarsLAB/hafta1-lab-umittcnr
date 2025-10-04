@@ -1,4 +1,223 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541009
+AD-SOYAD:ümitcan çinar
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+3. proje:🎵 Müzik koleksiyonunu düzenleme:
+
+ümit:🎵 Müzik koleksiyonunu düzenleme konusuna sahip, koşullar (if-else) ve döngüler (loops) içeren detaylı bir algoritma yazacağım bana bir örnek sunar mısın?
+
+llm:🎧 BÖLÜM 1 — Detaylı (teknik / algoritmik anlatım)
+🎯 Amaç
+
+Bir müzik koleksiyonunu (örneğin binlerce şarkının olduğu bir klasör) düzenli hale getiren bir algoritma tasarlamak.
+Bu algoritma:
+
+Şarkıları sanatçı, tür veya yıl bazında sınıflandırır,
+
+Eksik etiketleri tamamlar,
+
+Yinelenenleri (duplikateleri) bulup siler,
+
+Oynatma listelerini otomatik oluşturur.
+
+⚙️ 1. Girdiler ve değişkenler
+koleksiyon_listesi        // Tüm şarkı dosyalarının listesi
+dosya_yolu                // Her şarkının bulunduğu klasör
+etiket_bilgisi            // Şarkının meta verisi: sanatçı, tür, yıl, albüm
+tekrar_listesi            // Aynı isim veya içerikteki şarkılar
+düzenleme_kriteri         // Tür, sanatçı veya yıl bazlı düzenleme tercihi
+
+🔁 2. Döngü yapısı
+BAŞLA
+
+  HER şarkı DOSYASINDA TEKRARLA (koleksiyon_listesi içinde):
+
+      etiket_bilgisi ← OKU_META_VERİ(şarkı)
+      
+      EĞER etiket_bilgisi eksikse:
+          ETIKET_TAMAMLA(şarkı)     // örneğin "Bilinmeyen Sanatçı" ekle
+      BİTİR_EĞER
+      
+      klasör_yolu ← OLUŞTUR_KLASÖR(düzenleme_kriteri, etiket_bilgisi)
+      TAŞI(şarkı, klasör_yolu)
+      
+      EĞER ŞARKI_TEKRAR_VAR_MI(şarkı, koleksiyon_listesi):
+          EKLE(tekrar_listesi, şarkı)
+      BİTİR_EĞER
+
+  BİTİR_DÖNGÜ
+
+  HER şarkı TEKRARINDA TEKRARLA (tekrar_listesi içinde):
+      SİL_VEYA_TUT(şarkı)   // kullanıcı onayına göre
+  BİTİR_DÖNGÜ
+
+  OYNATMA_LISTESİ_OLUŞTUR(kriter="tür", sayfa="pop", limit=20)
+  OYNATMA_LISTESİ_OLUŞTUR(kriter="yıl", sayfa="nostalji", limit=50)
+
+BİTİR
+
+🧠 3. Mantıksal karar akışı (if-else)
+Durum	Karar
+Sanatçı bilgisi eksik	“Bilinmeyen Sanatçı” olarak ata
+Dosya adı birden fazla kez bulunuyorsa	Yinelenenleri kontrol et
+Tür = “Rock”	“Rock” klasörüne taşı
+Yıl < 2000	“Klasikler” klasörüne taşı
+Yıl >= 2000	“Modern” klasörüne taşı
+Şarkı süresi < 60 sn	Gereksiz (önizleme) olarak işaretle
+
+
+🧩 5. Geliştirme fikirleri
+
+Yapay zeka öneri sistemi: dinleme geçmişine göre otomatik çalma listesi oluştur.
+
+Görsel arayüz: sürükle-bırakla türlere ayırma.
+
+Bulut senkronizasyonu: düzenlenen koleksiyonu online bir ortama yedekle.
+
+Duygu analizi: şarkı sözlerinden “moda göre liste” oluştur (ör. “mutlu”, “hüzünlü”).
+
+
+
+
+
+
+ÜMİT:günlük dilde yazılmış halde de sunar mısın?
+llm;🎵 BÖLÜM 2 — Günlük konuşma tarzında anlatım
+
+Diyelim ki yıllardır biriktirdiğin şarkılar bilgisayarında karmakarışık.
+Klasörlerin şöyle:
+
+“Yeni klasör (5)”,
+“Müzik2”,
+“YENİ YENİ MÜZİKLER SON SON”,
+“Şarkı.mp3”, “Şarkı(1).mp3”, “Şarkı(2).mp3” 🙈
+
+Bir gün diyorsun ki:
+
+“Tamam, bu işe bir el atayım!”
+
+🎧 1. Başlangıç: “Temizlik vakti”
+
+Önce bütün şarkıları tek bir klasöre topluyorsun.
+Sonra sırayla dinleyip ya da dosya adına bakıp diyorsun:
+
+“Bu aynı şarkıdan iki tane var.”
+
+“Bu sanatçı adı yok, kim söylemişti bu ya?”
+
+“Bu 30 saniyelik şey ne, reklam mı?”
+
+Yani önce bir temizlik döngüsüne giriyorsun.
+Tekrarları bul, gereksizleri sil.
+Aynı şarkıyı 3 kere dinlemenin anlamı yok 😄
+
+🗂️ 2. Sıraya koyma zamanı
+
+Şimdi bir karar veriyorsun:
+
+“Ben müziklerimi türe göre mi, sanatçıya göre mi yoksa yıla göre mi düzenleyeceğim?”
+
+Eğer türe göre yapacaksan:
+
+“Pop” klasörü
+
+“Rock” klasörü
+
+“Rap” klasörü
+
+“Klasik” klasörü
+
+İf-else mantığı burada gizli:
+
+“Eğer tür = Rock → Rock klasörüne taşı,
+değilse → uygun klasöre taşı.”
+
+🎤 3. Etiketleri düzelt
+
+Bazı şarkıların ismi “Track01.mp3” gibi anlamsız.
+Diyorsun ki:
+
+“Sen kimsin kardeşim?”
+
+O zaman diyorsun:
+
+Eğer sanatçı adı eksikse → “Bilinmeyen Sanatçı” yaz.
+
+Eğer yıl boşsa → “Bilinmeyen Yıl” yaz.
+
+Yani bir nevi “boşluğu doldur” algoritması çalışıyor.
+
+🔁 4. Döngü: Her şarkı aynı muameleyi görecek
+
+Bir şarkıyı düzenliyorsun, sonra sıradaki geliyor.
+Bu döngü sonsuzmuş gibi geliyor ama her turda koleksiyon daha güzel görünüyor.
+Bir noktada şöyle diyorsun:
+
+“Vay be, artık ‘karışık mp3 çorbası’ değil, tam bir arşiv oldu!” 🎵
+
+🧠 5. Bonus: Akıllı çalma listeleri
+
+Sonra diyorsun ki:
+
+“Bir de ruh halime göre liste yapsam…”
+
+Sabah = “Enerjik başla” listesi
+
+Akşam = “Sakinleştirici lo-fi” listesi
+
+Üzgünsen = “Dertleşen şarkılar” listesi
+
+Böylece algoritman duygularına bile hizmet ediyor 😄
+
+⚙️ 6. Küçük yaratıcı fikirler
+
+Şarkıları kapak renginin tonuna göre sınıflandır (ör. pastel = sakin, kırmızı = enerjik 🎨).
+
+Şarkılara emoji etiketi koy: 🎸 Rock, 💃 Pop, 😎 Chill.
+
+Koleksiyonun sonunda bir “En çok dinlenenler” listesi oluştur.
+
+Her 100 şarkıda bir, sistem “Küçük bir mola ver, kulakların da dinlensin” desin 😄
+
+🎯 Özetle
+
+Bu müzik düzenleme işi aslında bir if-else + döngü partisi.
+Her şarkıya bir karar veriyorsun:
+
+“Tut, taşı, sil, ya da etiketle.”
+
+Ve sonunda koleksiyon şöyle oluyor:
+📁 Müzikler
+├── 🎸 Rock
+│ ├── Nirvana – Smells Like Teen Spirit.mp3
+├── 💃 Pop
+│ ├── Dua Lipa – Levitating.mp3
+└── 🎹 Klasik
+│ ├── Mozart – Symphony No.40.mp3
+
+Temiz, düzenli, mis gibi. 🎧✨
+
+
+
+
+
+
+ümit: çalışan kod versiyonu (python)'da üretir misin?
+proje adı:düzen hastasıx3   
+💻 4. Basit Python benzeri kod örneği
+for sarki in koleksiyon:
+    if not sarki.sanatci:
+        sarki.sanatci = "Bilinmeyen Sanatçı"
+    
+    if sarki.yil < 2000:
+        klasor = "Klasikler"
+    else:
+        klasor = "Modern"
+    
+    tasima_yolu = f"{klasor}/{sarki.tur}/{sarki.sanatci}/"
+    move(sarki.dosya, tasima_yolu)
+    
+    if sarki in tekrar_listesi:
+        print(f"Tekrar bulundu: {sarki.ad}")
+
+kaynak: llm(ChatGPT)
